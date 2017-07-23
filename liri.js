@@ -1,7 +1,7 @@
 var twitter = require('twitter');
 var spotify = require('node-spotify-api');
 var request = require('request');
-var fs = require('fs');
+var fs = require('fs');//File system
 var keys = require("./key.js");
 
 
@@ -11,6 +11,16 @@ var spotifyKeys = keys.spotify;
 var omdbApiKey = keys.omdbApiKey.apikey
 // Test api key calling
 console.log("OMDB: " + omdbApiKey + "\n-------------\n" + "Twitter: " + twitterKeys + "\n-------------\n" + "Spotify: " + spotifyKeys);
+
+var writeToLog = function (data) {
+    fs.appendFile("log.txt", '\r\n\r\n');
+    fs.appendFile("log.txt", JSON.stringify(data), function (err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("log.txt file has been updated");
+    });
+}
 
 /*var getMeMovie = function(movieName) {
 
